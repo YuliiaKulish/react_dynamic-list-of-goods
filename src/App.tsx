@@ -8,21 +8,33 @@ export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
 
   const handleLoadAll = async () => {
-    const allGoods = await goodsAPI.getAll();
+    try {
+      const allGoods = await goodsAPI.getAll();
 
-    setGoods(allGoods);
+      setGoods(allGoods);
+    } catch (error) {
+      alert('Failed to load goods. Please try again later.');
+    }
   };
 
   const handleLoadFirstFive = async () => {
-    const firstFive = await goodsAPI.get5First();
+    try {
+      const firstFive = await goodsAPI.get5First();
 
-    setGoods(firstFive);
+      setGoods(firstFive);
+    } catch (error) {
+      alert('Failed to load goods. Please try again later.');
+    }
   };
 
   const handleLoadRed = async () => {
-    const redGoods = await goodsAPI.getRedGoods();
+    try {
+      const redGoods = await goodsAPI.getRedGoods();
 
-    setGoods(redGoods);
+      setGoods(redGoods);
+    } catch (error) {
+      alert('Failed to load goods. Please try again later.');
+    }
   };
 
   return (
