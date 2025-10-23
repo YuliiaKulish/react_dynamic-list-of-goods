@@ -7,33 +7,33 @@ import { Good } from './types/Good';
 export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
 
-  const handleLoadAll = async () => {
+  const handleLoadAll = async (): Promise<void> => {
     try {
-      const allGoods = await goodsAPI.getAll();
+      const allGoods: Good[] = await goodsAPI.getAll();
 
       setGoods(allGoods);
     } catch (error) {
-      alert('Failed to load goods. Please try again later.');
+      throw new Error('Failed to fetch');
     }
   };
 
-  const handleLoadFirstFive = async () => {
+  const handleLoadFirstFive = async (): Promise<void> => {
     try {
-      const firstFive = await goodsAPI.get5First();
+      const firstFive: Good[] = await goodsAPI.get5First();
 
       setGoods(firstFive);
     } catch (error) {
-      alert('Failed to load goods. Please try again later.');
+      throw new Error('Failed to fetch');
     }
   };
 
-  const handleLoadRed = async () => {
+  const handleLoadRed = async (): Promise<void> => {
     try {
-      const redGoods = await goodsAPI.getRedGoods();
+      const redGoods: Good[] = await goodsAPI.getRedGoods();
 
       setGoods(redGoods);
     } catch (error) {
-      alert('Failed to load goods. Please try again later.');
+      throw new Error('Failed to fetch');
     }
   };
 

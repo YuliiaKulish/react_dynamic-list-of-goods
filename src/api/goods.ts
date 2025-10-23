@@ -9,13 +9,13 @@ export async function getAll(): Promise<Good[]> {
   return response.json();
 }
 
-export const get5First = async () => {
+export const get5First = async (): Promise<Good[]> => {
   const goods = await getAll();
 
   return goods.sort((a, b) => a.name.localeCompare(b.name)).slice(0, 5);
 };
 
-export const getRedGoods = async () => {
+export const getRedGoods = async (): Promise<Good[]> => {
   const goods = await getAll();
 
   return goods.filter(good => good.color === 'red');
