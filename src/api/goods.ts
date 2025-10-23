@@ -6,7 +6,13 @@ const API_URL =
 export async function getAll(): Promise<Good[]> {
   const response = await fetch(API_URL);
 
-  return response.json();
+  if (!response.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  const data: Good[] = await response.json();
+
+  return data;
 }
 
 export const get5First = async (): Promise<Good[]> => {
